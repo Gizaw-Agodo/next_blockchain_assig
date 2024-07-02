@@ -5,7 +5,6 @@ import axios from "axios";
 import AssetAvatar from "./assetAvatar";
 import TradeButton from "./tradeButton";
 
-
 const columns: GridColDef[] = [
   {
     field: "asset",
@@ -30,35 +29,45 @@ const columns: GridColDef[] = [
     headerName: "24H %",
     width: 150,
     type: "number",
-    renderCell: (params: any) => <span className={`${params.value as number  > 0 ? "text-green-600":"text-red-500"}`}>{params.value}%</span>,
+    renderCell: (params: any) => (
+      <span className={`${params.value as number > 0 ? "text-green-600" : "text-red-500"}`}>
+        {params.value}%
+      </span>
+    ),
   },
   {
     field: "change24hDecimal",
     headerName: "24H CHANGE",
     width: 150,
     type: "number",
-    renderCell: (params: any) => <span className={`${params.value as number  > 0 ? "text-green-600":"text-red-500"}`}>${params.value}</span>,
+    renderCell: (params: any) => (
+      <span className={`${params.value as number > 0 ? "text-green-600" : "text-red-500"}`}>
+        ${params.value}
+      </span>
+    ),
   },
-
   {
     field: "more",
     headerName: "More",
-    width: 283,
-    renderCell: () => <div className="mx-auto ml-3"><TradeButton/></div> ,
+    width: 210,
+    renderCell: () => (
+      <div className="mx-auto ml-3">
+        <TradeButton />
+      </div>
+    ),
   },
 ];
 
 const AssetDataGrid = () => {
-  const [rows, setRows] = useState([])
-  const [loading, setLoading] = useState(true)
- 
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchAssets = async () => {
       try {
         const res = await axios.get('/api/crypto-data');
-        
         setRows(res.data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching assets:', error);
       }
@@ -68,21 +77,20 @@ const AssetDataGrid = () => {
   }, []);
 
   return (
-    <div className="h-100 w-[70%] mx-auto mt-10">
+    <div className="h-100 w-full md:w-3/4 lg:w-3/4 xl:w-2/3 mx-auto mt-10 px-4">
       <DataGrid
-       getRowId={(row) => row._id}
+        getRowId={(row) => row._id}
         classes={{
           root: "bg-black",
           cell: "text-white",
-
           columnHeader: "text-white bg-black",
         }}
         rows={rows}
         columns={columns}
-        loading = {loading}
+        loading={loading}
+        autoHeight
       />
     </div>
-
   );
 };
 

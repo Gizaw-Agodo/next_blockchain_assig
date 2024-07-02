@@ -26,66 +26,58 @@ const TokenSwap: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full bg-black flex flex-col items-center mr-10 justify-center mx-auto mt-6">
-      <div className="text-white text-lg font-bold ">Swap Tokens</div>
-      <div className="p-4 max-w-lg mx-auto bg-gray-800 shadow-md rounded-lg">
-        <div className="flex flex-row">
-          <div className="flex justify-between flex-row items-center mb-4">
-            <div className="flex-1 mr-2">
-              <input
-                type="number"
-                id="fromAmount"
-                defaultValue={0}
-                onChange={(e) => setFromAmount(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border  p-2.5 bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none  sm:text-sm"
-              />
-            </div>
-            <div className="flex-1 ml-2">
-              <select
-                id="fromAsset"
-                value={fromAsset}
-                onChange={(e) => setFromAsset(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border  p-2.5 bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none  sm:text-sm"
-              >
-                {assets.map((asset) => (
-                  <option key={asset.value} value={asset.value}>
-                    {asset.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+    <div className="w-full h-full bg-black flex flex-col items-center justify-center mx-auto mt-6 p-4">
+      <div className="text-white text-lg font-bold mb-4">Swap Tokens</div>
+      <div className="p-4 max-w-lg w-full bg-gray-800 shadow-md rounded-lg">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-1">
+            <input
+              type="number"
+              id="fromAmount"
+              defaultValue={0}
+              onChange={(e) => setFromAmount(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+            />
+            <select
+              id="fromAsset"
+              value={fromAsset}
+              onChange={(e) => setFromAsset(e.target.value)}
+              className="mt-2 block w-full px-3 py-2 border bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+            >
+              {assets.map((asset) => (
+                <option key={asset.value} value={asset.value}>
+                  {asset.label}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="flex justify-between items-center mb-4 ml-5">
-            <div className="flex-1 mr-2">
-              <input
-                type="number"
-                id="toAmount"
-                value={toAmount}
-                onChange={(e) => setToAmount(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border  p-2.5 bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none  sm:text-sm"
-              />
-            </div>
-            <div className="flex-1 ml-2">
-              <select
-                id="toAsset"
-                value={toAsset}
-                onChange={(e) => setToAsset(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border  p-2.5 bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none  sm:text-sm"
-              >
-                {assets.map((asset) => (
-                  <option key={asset.value} value={asset.value}>
-                    {asset.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <div className="flex flex-col md:flex-1">
+            <input
+              type="number"
+              id="toAmount"
+              value={toAmount}
+              onChange={(e) => setToAmount(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+            />
+            <select
+              id="toAsset"
+              value={toAsset}
+              onChange={(e) => setToAsset(e.target.value)}
+              className="mt-2 block w-full px-3 py-2 border bg-gray-700 dark:border-gray-600 placeholder-gray-400 text-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+            >
+              {assets.map((asset) => (
+                <option key={asset.value} value={asset.value}>
+                  {asset.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
       <button
         onClick={handleSwap}
-        className="  text-white py-2 px-4 mt-4 rounded-md shadow-sm bg-light-button mx-auto"
+        className="text-white py-2 px-4 mt-4 rounded-md shadow-sm bg-light-button mx-auto"
       >
         Swap Tokens
       </button>
